@@ -1,9 +1,16 @@
 import UserData from "../models/UserData"
 
-const CONSTANTS = {
+export const CONSTANTS = {
     humanFatCalorificValue: 7740, // kcal/kg
     timeGranulation: 7, // days
-    massLossFactor: -0.013 // body mass percentage
+    massLossFactor: -0.013, // body mass loss percentage
+}
+
+export const UNITS = {
+    caloriesUnit: 'kcal',
+    massUnit: 'kg',
+    heightUnit: 'cm',
+    timeUnit: 'years'
 }
 
 export function calculateResults({ gender, age, height, weight, pal, targetWeight, startDate }: UserData) {
