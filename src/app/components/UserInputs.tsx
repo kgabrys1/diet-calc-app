@@ -1,6 +1,5 @@
 import Input from "./Input"
 import UserData from "../models/UserData"
-import { calculateResults, CONSTANTS } from "../util/Helper"
 
 
 interface UserInputsProps {
