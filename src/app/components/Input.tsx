@@ -7,10 +7,9 @@ interface InputProps {
     onChange: (inputId: string, newValue: string) => void
 }
 
-export default function Input({ id, type, unit, value, children, onChange }: InputProps) {
+export default function Input({ id, type, unit, value, children, onChange }: Readonly<InputProps>) {
     const isRadio = type === "radio"
     const isPal = id === "pal"
-    const isDate = type === "date"
 
     return (
         <div className="flex flex-col items-center">
@@ -23,10 +22,10 @@ export default function Input({ id, type, unit, value, children, onChange }: Inp
                             name="gender"
                             type={type}
                             value="M"
-                            checked={value === 'M' ?? "checked"}
+                            checked={value === 'M'}
                             onChange={(event) => onChange('gender', event.target.value)}
                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                        <label className="ms-1 font-medium text-gray-900 dark:text-white">Male</label>
+                        <label htmlFor="maleGenderRadio" className="ms-1 font-medium text-gray-900 dark:text-white">Male</label>
                     </div>
                     <div>
                         <input
@@ -34,11 +33,11 @@ export default function Input({ id, type, unit, value, children, onChange }: Inp
                             name="gender"
                             type={type}
                             value="F"
-                            checked={value === 'F' ?? "checked"}
+                            checked={value === 'F'}
                             onChange={(event) => onChange('gender', event.target.value)}
                             className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
-                        <label className="ms-1 font-medium text-gray-900 dark:text-white">Female</label>
+                        <label htmlFor="femaleGenderRadio" className="ms-1 font-medium text-gray-900 dark:text-white">Female</label>
                     </div>
                 </div>
             }
@@ -50,6 +49,7 @@ export default function Input({ id, type, unit, value, children, onChange }: Inp
                         type={type}
                         value={value}
                         step={isPal ? 0.1 : 1}
+                        min={isPal ? 1.0 : 0}
                         onChange={(event) => onChange(id, event.target.value)}
                         className={`relative bg-gray-900 m-0 block flex-auto ${unit ? 'rounded-s' : 'rounded'} border border-solid border-neutral-200 bg-clip-padding px-2 py-[0.17rem] text-sm font-normal leading-[1.5] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary`}
                         aria-describedby="inputGroup"

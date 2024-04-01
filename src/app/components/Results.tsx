@@ -6,7 +6,7 @@ interface ResultsProps {
     userData: UserData
 }
 
-export default function Results({ userData }: ResultsProps) {
+export default function Results({ userData }: Readonly<ResultsProps>) {
     const calorieResults = calculateResults(userData)
     return (
         <div className="grid gap-6 mb-6 md:grid-cols-2">
