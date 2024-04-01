@@ -9,7 +9,8 @@ export const CONSTANTS = {
 export const UNITS = {
     caloriesUnit: 'kcal',
     massUnit: 'kg',
-    heightUnit: 'cm'
+    heightUnit: 'cm',
+    timeUnit: 'years'
 }
 
 export function calculateResults({ gender, age, height, weight, pal, targetWeight, startDate }: UserData) {
