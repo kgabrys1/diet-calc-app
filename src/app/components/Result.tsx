@@ -5,7 +5,7 @@ interface ResultProps {
     unit: string
 }
 
-export default function Results({ children, id, value, unit }: ResultProps) {
+export default function Results({ children, id, value, unit }: Readonly<ResultProps>) {
     const inputStyle = "text-center text-xl font-bold dark:text-white"
 
     return (

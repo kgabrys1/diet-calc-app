@@ -8,7 +8,7 @@ interface UserInputsProps {
     userInput: UserData
 }
 
-export default function UserInputs({ onChange, userInput }: UserInputsProps) {
+export default function UserInputs({ onChange, userInput }: Readonly<UserInputsProps>) {
     return (
         <div className="grid gap-6 mb-6 md:grid-cols-2">
             <Input id="gender" type="radio" value={userInput.gender} unit="" onChange={onChange}>Gender</Input>
