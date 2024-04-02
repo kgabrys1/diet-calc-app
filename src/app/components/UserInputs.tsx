@@ -12,6 +12,7 @@ export default function UserInputs({ onChange, userInput }: Readonly<UserInputsP
     return (
         <div className="grid gap-6 mb-6 md:grid-cols-2">
             <Input id="gender" type="radio" value={userInput.gender} unit="" onChange={onChange}>Gender</Input>
+            <Input id="reductionIntensity" type="radio" value={userInput.reductionIntensity} unit="" onChange={onChange}>Reduction intesity</Input>
             <Input id="age" type="number" value={userInput.age} unit={UNITS.timeUnit} onChange={onChange}>Age</Input>
             <Input id="height" type="number" value={userInput.height} unit={UNITS.heightUnit} onChange={onChange}>Height</Input>
             <Input id="weight" type="number" value={userInput.weight} unit={UNITS.massUnit} onChange={onChange}>Weight</Input>
