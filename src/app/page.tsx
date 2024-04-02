@@ -9,6 +9,7 @@ import UserData from "./models/UserData"
 export default function Home() {
   const [userData, setUserData] = useState(new UserData({
     gender: 'M',
+    reductionIntensity: 'med',
     age: 25,
     height: 175,
     weight: 75,
@@ -21,7 +22,7 @@ export default function Home() {
     setUserData((prevUserData) => {
       return {
         ...prevUserData,
-        [inputId]: (inputId === "gender" || inputId === "startDate" ? newValue : +newValue)
+        [inputId]: (inputId === "gender" || inputId === "startDate" || inputId === "reductionIntensity" ? newValue : +newValue)
       }
     })
   }

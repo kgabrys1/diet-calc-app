@@ -1,5 +1,6 @@
 interface UserData {
   gender: string
+  reductionIntensity: string
   age: number
   height: number
   weight: number
