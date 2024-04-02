@@ -3,7 +3,7 @@ interface InputProps {
     type: string
     unit: string
     value: number | string
-    children: string
+    children: React.ReactNode
     onChange: (inputId: string, newValue: string) => void
 }
 

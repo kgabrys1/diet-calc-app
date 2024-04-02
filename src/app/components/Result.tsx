@@ -1,5 +1,5 @@
 interface ResultProps {
-    children: string
+    children: React.ReactNode
     id: string
     value: number | string
     unit: string
