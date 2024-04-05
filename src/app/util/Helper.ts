@@ -16,17 +16,20 @@ export const UNITS = {
 }
 
 export function calculateResults({ gender, reductionIntensity, age, height, weight, pal, targetWeight, startDate }: UserData) {
+    const isReduction = weight > targetWeight
+    let massChangeFactor = getMassLossFactor(reductionIntensity)
+    massChangeFactor = (isReduction ?  massChangeFactor : -massChangeFactor)
+
     const bmr = 10 * weight + 6.25 * height - 5 * age + (gender === "M" ? 5 : -161)
     const tee = bmr * pal
-    const cid = bmr * (1 - pal)
+    const cid = isReduction ? bmr * (1 - pal) : 0
 
-    const massLossFactor = getMassLossFactor(reductionIntensity)
-    const targetWeeks = getTargetWeeks(weight, targetWeight, massLossFactor)
-    const avgMassDiff = getAvgMassDiff(targetWeeks, weight, massLossFactor)
-    const cd = CONSTANTS.humanFatCalorificValue * avgMassDiff / CONSTANTS.timeGranulation
+    const targetWeeks = getTargetWeeks(weight, targetWeight, massChangeFactor)
+    const avgMassDiff = getAvgMassDiff(targetWeeks, weight, massChangeFactor)
+    const cd = weight !== targetWeight ? CONSTANTS.humanFatCalorificValue * avgMassDiff / CONSTANTS.timeGranulation : 0
     const baseCi =  tee + cd
     const ci = baseCi < bmr ? bmr : baseCi
-    const cb = cid - cd
+    const cb = isReduction ? cid - cd : 0
     return {
         bmr: round(bmr),
         tee: round(tee),
@@ -48,7 +51,7 @@ function getMassLossFactor(reductionIntensity: string): number {
     }
 }
 
-const getTargetWeeks = (weight: number, targetWeight: number, massLossFactor: number) => Math.round(-Math.log(weight / targetWeight) / massLossFactor)
+const getTargetWeeks = (weight: number, targetWeight: number, massLossFactor: number) => Math.abs(Math.round(-Math.log(weight / targetWeight) / massLossFactor))
 
 const round = (val: number, n: number = 0) => Math.round(val * Math.pow(10, n)) / Math.pow(10, n)
 
