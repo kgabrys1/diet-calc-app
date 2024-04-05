@@ -1,5 +1,6 @@
 import { Tooltip } from 'react-tooltip'
 
+
 interface InputProps {
     id: string
     type: string
@@ -17,12 +18,12 @@ export default function Input({ id, type, unit, value, children, tooltipText, on
     return (
         <div className="flex flex-col items-center">
             <label
-                className="block mb-0.5 text-sm font-medium text-gray-400"
+                className={`block mb-0.5 text-sm font-medium text-gray-400 ${tooltipText && 'hover:text-gray-300'}`}
                 data-tooltip-id={`tooltip-${id}`}
                 data-tooltip-content={tooltipText}
                 data-tooltip-place="top"
             >{children}</label>
-            {isPal && 
+            {tooltipText && 
                 <Tooltip style={{ width: "25%" }} id={`tooltip-${id}`} />
             }
             {isGender &&

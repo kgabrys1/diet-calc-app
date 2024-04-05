@@ -3,6 +3,7 @@ import UserData from "../models/UserData"
 import { UNITS } from "../util/Helper"
 import { PAL_TOOLTIP } from "../util/TooltipText"
 
+
 interface UserInputsProps {
     onChange: (inputId: string, newValue: string) => void,
     userInput: UserData
